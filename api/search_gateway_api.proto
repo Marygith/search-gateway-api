@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package gateway;
+
+option java_package = "ru.nms.diplom.searchgateway.service";
+option java_multiple_files = true;
+
+service SearchGatewayService {
+  rpc search(SearchRequest) returns (SearchResponse);
+}
+
+message SearchRequest {
+  string query = 1;
+  int32 k = 2;
+}
+
+message Document {
+  int32 id = 1;
+  float faissScore = 2;
+  float luceneScore = 3;
+}
+
+message SearchResponse {
+  repeated Document results = 1;
+}
