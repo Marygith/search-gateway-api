@@ -14,11 +14,11 @@ public class ShardUtils {
         Map<String, ShardGroup> map = new HashMap<>();
 
         for (ShardMapping mapping : state.getFaissShardsList()) {
-            map.computeIfAbsent(mapping.getIp() + ":0", key -> new ShardGroup(mapping.getIp(), 0))
+            map.computeIfAbsent(mapping.getHost() + mapping.getPort() + ":0", key -> new ShardGroup(mapping.getHost(), mapping.getPort(), 0))
                     .shardIds.addAll(mapping.getShardsList());
         }
         for (ShardMapping mapping : state.getLuceneShardsList()) {
-            map.computeIfAbsent(mapping.getIp() + ":1", key -> new ShardGroup(mapping.getIp(), 1))
+            map.computeIfAbsent(mapping.getHost() + mapping.getPort() + ":1", key -> new ShardGroup(mapping.getHost(), mapping.getPort(), 1))
                     .shardIds.addAll(mapping.getShardsList());
         }
 

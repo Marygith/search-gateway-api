@@ -3,6 +3,7 @@ package ru.nms.diplom.searchgateway.service;
 import io.grpc.stub.StreamObserver;
 import ru.nms.diplom.shardsearch.ShardSearchResponse;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,6 +27,7 @@ public class ShardSearchObserver implements StreamObserver<ShardSearchResponse> 
 
     @Override
     public void onNext(ShardSearchResponse value) {
+        System.out.println("came response with docs: " + value.getResultsList().stream().map(ru.nms.diplom.shardsearch.Document::getId).toList());
         for (ru.nms.diplom.shardsearch.Document doc : value.getResultsList()) {
             docs.add(Document.newBuilder()
                     .setId((int) doc.getId())
@@ -37,6 +39,7 @@ public class ShardSearchObserver implements StreamObserver<ShardSearchResponse> 
 
     @Override
     public void onError(Throwable t) {
+        System.out.println("came error: " + t);
         maybeRespond();
     }
 
@@ -48,6 +51,7 @@ public class ShardSearchObserver implements StreamObserver<ShardSearchResponse> 
 
     private void maybeRespond() {
         if (completed.incrementAndGet() == totalGroups) {
+            System.out.println("all responses came!");
 //            List<Document> topK = allDocs.stream()
 //                    .sorted(Comparator.comparingDouble(doc -> -(doc.getFaissScore() + doc.getLuceneScore())))
 //                    .limit(originalK)

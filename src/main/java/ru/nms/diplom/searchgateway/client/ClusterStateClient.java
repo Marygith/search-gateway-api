@@ -8,8 +8,9 @@ import ru.nms.diplom.clusterstate.service.ShardsDistributionResponse;
 public class ClusterStateClient {
     private final ShardServiceGrpc.ShardServiceBlockingStub stub;
 
-    public ClusterStateClient(String host, int port) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
+    public ClusterStateClient() {
+        String clusterStateApiHost = System.getenv().getOrDefault("CLUSTER_STATE_HOST", "localhost");
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(clusterStateApiHost, 9091)
                 .usePlaintext()
                 .build();
         this.stub = ShardServiceGrpc.newBlockingStub(channel);

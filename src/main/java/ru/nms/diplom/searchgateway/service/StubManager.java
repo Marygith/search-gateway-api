@@ -10,9 +10,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class StubManager {
     private static final Map<String, ShardSearchServiceGrpc.ShardSearchServiceStub> stubPool = new ConcurrentHashMap<>();
 
-    public static ShardSearchServiceGrpc.ShardSearchServiceStub getBaseStub(String ip) {
-        return stubPool.computeIfAbsent(ip, address -> {
-            ManagedChannel channel = ManagedChannelBuilder.forAddress(address, 9090)
+    public static ShardSearchServiceGrpc.ShardSearchServiceStub getBaseStub(String host, int port) {
+        return stubPool.computeIfAbsent(host + port, address -> {
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                     .usePlaintext()
                     .build();
             return ShardSearchServiceGrpc.newStub(channel); // base stub
