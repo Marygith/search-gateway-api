@@ -13,11 +13,11 @@ public class ShardUtils {
     public static List<ShardGroup> groupShardsByIpAndType(ShardsDistributionResponse state) {
         Map<String, ShardGroup> map = new HashMap<>();
 
-        for (ShardMapping mapping : state.getFaissShardsList()) {
+        for (ShardMapping mapping : state.getLuceneShardsList()) {
             map.computeIfAbsent(mapping.getHost() + mapping.getPort() + ":0", key -> new ShardGroup(mapping.getHost(), mapping.getPort(), 0))
                     .shardIds.addAll(mapping.getShardsList());
         }
-        for (ShardMapping mapping : state.getLuceneShardsList()) {
+        for (ShardMapping mapping : state.getFaissShardsList()) {
             map.computeIfAbsent(mapping.getHost() + mapping.getPort() + ":1", key -> new ShardGroup(mapping.getHost(), mapping.getPort(), 1))
                     .shardIds.addAll(mapping.getShardsList());
         }

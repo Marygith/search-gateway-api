@@ -12,6 +12,8 @@ service SearchGatewayService {
 message SearchRequest {
   string query = 1;
   int32 k = 2;
+  float shardLimitCoefficient = 3;
+  bool isCoefficientAbsolute = 4;
 }
 
 message Document {
@@ -22,4 +24,10 @@ message Document {
 
 message SearchResponse {
   repeated Document results = 1;
+  Meta meta = 2;
+}
+
+message Meta {
+  int32 adjustedK = 1;
+  int32 amountOfReceivedDocs = 2;
 }

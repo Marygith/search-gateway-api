@@ -14,6 +14,7 @@ public class StubManager {
         return stubPool.computeIfAbsent(host + port, address -> {
             ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                     .usePlaintext()
+                    .maxInboundMessageSize(10000000)
                     .build();
             return ShardSearchServiceGrpc.newStub(channel); // base stub
         });
