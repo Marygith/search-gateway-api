@@ -1,5 +1,6 @@
 package ru.nms.diplom.searchgateway.service;
 
+import embedding.EmbeddingServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import ru.nms.diplom.shardsearch.ShardSearchServiceGrpc;
@@ -9,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class StubManager {
     private static final Map<String, ShardSearchServiceGrpc.ShardSearchServiceStub> stubPool = new ConcurrentHashMap<>();
+    private static final EmbeddingServiceGrpc.EmbeddingServiceFutureStub embeddingFutureStub = initEmbeddingFutureStub();
 
     public static ShardSearchServiceGrpc.ShardSearchServiceStub getBaseStub(String host, int port) {
         return stubPool.computeIfAbsent(host + port, address -> {
@@ -18,5 +20,15 @@ public class StubManager {
                     .build();
             return ShardSearchServiceGrpc.newStub(channel); // base stub
         });
+    }
+    public static EmbeddingServiceGrpc.EmbeddingServiceFutureStub initEmbeddingFutureStub() {
+            ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9000)
+                    .usePlaintext()
+                    .build();
+            return EmbeddingServiceGrpc.newFutureStub(channel);
+    }
+
+    public static EmbeddingServiceGrpc.EmbeddingServiceFutureStub getEmbeddingFutureStub() {
+        return embeddingFutureStub;
     }
 }

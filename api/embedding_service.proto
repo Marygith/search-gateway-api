@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package embedding;
+
+service EmbeddingService {
+  rpc Encode(EncodeRequest) returns (EncodedVector);
+}
+
+message EncodeRequest {
+  string query = 1;
+}
+
+message EncodedVector {
+  repeated float values = 1;
+}

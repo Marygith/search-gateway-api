@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8e1adf3-b54e-42e0-89f4-7951bc06f11f" name="Changes" comment="mvp">
+      <change afterPath="$PROJECT_DIR$/api/embedding_service.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/embedding_server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/embedding_service_pb2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/embedding_service_pb2_grpc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/client/ClusterStateClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/client/ClusterStateClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/shard_search_api.proto" beforeDir="false" afterPath="$PROJECT_DIR$/api/shard_search_api.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/SearchGatewayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/SearchGatewayServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/ShardSearchObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/ShardSearchObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/StubManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/StubManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
