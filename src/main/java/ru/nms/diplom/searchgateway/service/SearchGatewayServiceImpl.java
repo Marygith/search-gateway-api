@@ -26,7 +26,7 @@ public class SearchGatewayServiceImpl extends SearchGatewayServiceGrpc.SearchGat
 
     @Override
     public void search(SearchRequest request, StreamObserver<SearchResponse> responseObserver) {
-//        ShardsDistributionResponse state = clusterStateClient.getShardsDistribution();
+        ShardsDistributionResponse state = clusterStateClient.getShardsDistribution();
         List<ShardGroup> shardGroups = ShardUtils.groupShardsByIpAndType(state);
 
         int totalGroups = shardGroups.size();
@@ -44,7 +44,7 @@ public class SearchGatewayServiceImpl extends SearchGatewayServiceGrpc.SearchGat
                     .addAllShardIds(group.shardIds)
                     .build();
 
-            ShardSearchServiceGrpc.ShardSearchServiceStub stub = StubManager.getBaseStub(group.host, group.port).withDeadlineAfter(20, TimeUnit.SECONDS);
+            ShardSearchServiceGrpc.ShardSearchServiceStub stub = StubManager.getBaseStub(group.host, group.port).withDeadlineAfter(2, TimeUnit.SECONDS);
 
             System.out.printf("sending request to %s, index type: %s, shard ids: %s, request: %s%n", group.host + ":" + group.port, group.indexType == 0 ? "LUCENE" : "FAISS", group.shardIds, request);
             stub.shardSearch(shardRequest, new ShardSearchObserver(group.host, group.shardIds, group.indexType,

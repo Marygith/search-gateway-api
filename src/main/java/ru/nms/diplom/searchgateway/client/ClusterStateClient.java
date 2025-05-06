@@ -10,7 +10,7 @@ public class ClusterStateClient {
 
     public ClusterStateClient() {
         String clusterStateApiHost = System.getenv().getOrDefault("CLUSTER_STATE_HOST", "localhost");
-        ManagedChannel channel = ManagedChannelBuilder.forAddress(clusterStateApiHost, 9091)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(clusterStateApiHost, 8081)
                 .usePlaintext()
                 .build();
         this.stub = ShardServiceGrpc.newBlockingStub(channel);

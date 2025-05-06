@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b8e1adf3-b54e-42e0-89f4-7951bc06f11f" name="Changes" comment="mvp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/client/ClusterStateClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/client/ClusterStateClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/SearchGatewayServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/SearchGatewayServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/ShardSearchObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nms/diplom/searchgateway/service/ShardSearchObserver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +18,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Marygith&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Marygith/search-gateway-api.git&quot;,
+    &quot;accountId&quot;: &quot;22b009ed-113d-4ced-a660-81fe658864c5&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$MAVEN_REPOSITORY$/io/grpc/grpc-api/1.61.0/grpc-api-1.61.0.jar!/io/grpc/Grpc.class" root0="SKIP_INSPECTION" />
   </component>
@@ -29,9 +44,13 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Maven.search-gateway-api [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.search-gateway-api [package].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/dev/diplom/search-gateway-api&quot;
   }
 }</component>

@@ -40,6 +40,7 @@ public class ShardSearchObserver implements StreamObserver<ShardSearchResponse> 
 
     @Override
     public void onNext(ShardSearchResponse value) {
+        System.out.printf("came successful response with %s docs%n", value.getResultsCount());
 //        System.out.println("came response with docs: " + value.getResultsList().stream().map(ru.nms.diplom.shardsearch.Document::getId).toList());
         for (ru.nms.diplom.shardsearch.Document doc : value.getResultsList()) {
             docs.add(Document.newBuilder()
