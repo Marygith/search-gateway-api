@@ -4,6 +4,7 @@ package shardsearch;
 
 option java_package = "ru.nms.diplom.shardsearch";
 option java_multiple_files = true;
+import "google/protobuf/empty.proto";
 
 // Request for shard-level search
 message ShardSearchRequest {
@@ -28,14 +29,51 @@ message ShardSearchResponse {
 }
 
 message SimilarityScoresRequest {
+    repeated Document documents = 1;
+    int32 shardId = 2;
+    int32 indexType = 3;
+    string query = 4;
+    repeated float encodedQuery = 5;
+}
+
+message MetricDataResponse {
+    repeated ProxyShardMetrics faissProxyShardMetrics = 1;
+    repeated ProxyShardMetrics luceneProxyShardMetrics = 2;
+    repeated ShardMetrics faissShardMetrics = 3;
+    repeated ShardMetrics luceneShardMetrics = 4;
+}
+
+message ProxyShardMetrics {
+    int32 shardId = 1;
+    int64 similarityDocsTime = 2;
+    int32 amountOfSimilarityDocsRequests = 3;
+}
+
+message ShardMetrics {
+    int32 shardId = 1;
+    int64 similarityDocsTime = 2;
+    int32 amountOfSimilarityDocsRequests = 3;
+    int64 searchDocsTime = 4;
+    int32 amountOfSearchDocsRequests = 5;
+}
+
+message SearchDocsRequest {
+  string query = 1;
+  int32 k = 2;
+  int32 indexType = 3;           // 0 = FAISS, 1 = Lucene, or enum if preferred
+  repeated int32 shard_ids = 4;
+  repeated float encodedQuery = 5;
+  // List of shard IDs on this node to search
+}
+
+message SearchDocsResponse {
   repeated Document documents = 1;
-  int32 shardId = 2;
-  int32 indexType = 3;
-  string query = 4;
 }
 
 // gRPC service for shard-level search
 service ShardSearchService {
   rpc shardSearch (ShardSearchRequest) returns (stream ShardSearchResponse);
   rpc getSimilarityScores (SimilarityScoresRequest) returns (ShardSearchResponse);
+  rpc searchDocs (SearchDocsRequest) returns (SearchDocsResponse);
+  rpc getMetricData(google.protobuf.Empty) returns (MetricDataResponse);
 }

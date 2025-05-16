@@ -14,6 +14,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class StubManager {
     private static final Map<String, ShardSearchServiceGrpc.ShardSearchServiceStub> stubPool = new ConcurrentHashMap<>();
     private static final int BASE_PORT = 9000;
+    private static final Map<String, ShardSearchServiceGrpc.ShardSearchServiceBlockingStub> blockingStubPool = new ConcurrentHashMap<>();
+
     private static final List<EmbeddingServiceGrpc.EmbeddingServiceFutureStub> stubs = new ArrayList<>();
     private static final AtomicInteger roundRobinCounter = new AtomicInteger(0);
 
@@ -49,6 +51,16 @@ public class StubManager {
                     .maxInboundMessageSize(10000000)
                     .build();
             return ShardSearchServiceGrpc.newStub(channel); // base stub
+        });
+    }
+
+    public static ShardSearchServiceGrpc.ShardSearchServiceBlockingStub getBlockingStub(String host, int port) {
+        return blockingStubPool.computeIfAbsent(host + port, address -> {
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
+                .usePlaintext()
+                .maxInboundMessageSize(10000000)
+                .build();
+            return ShardSearchServiceGrpc.newBlockingStub(channel); // base stub
         });
     }
     public static EmbeddingServiceGrpc.EmbeddingServiceFutureStub initEmbeddingFutureStub() {
